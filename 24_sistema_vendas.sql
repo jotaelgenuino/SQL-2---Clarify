@@ -6,20 +6,20 @@ GO
 USE db1609_sistema_vendas;
 GO
 
-IF OBJECT_ID ('clientes', 'U') IS NOT NULL
-DROP TABLE clientes;
+IF OBJECT_ID ('vendas', 'U') IS NOT NULL
+DROP TABLE vendas;
 GO
 
 IF OBJECT_ID ('produtos', 'U') IS NOT NULL
 DROP TABLE produtos;
 GO
 
-IF OBJECT_ID ('vendas', 'U') IS NOT NULL
-DROP TABLE vendas;
-GO
-
 IF OBJECT_ID ('auditoria_vendas', 'U') IS NOT NULL
 DROP TABLE auditoria_vendas;
+GO
+
+IF OBJECT_ID ('clientes', 'U') IS NOT NULL
+DROP TABLE clientes;
 GO
 
 IF OBJECT_ID ('trg_AuditoriaInsercao', 'TR') IS NOT NULL
@@ -56,7 +56,7 @@ CREATE TABLE vendas(
 	valor_total DECIMAL(10,2),
 	data_venda DATETIME DEFAULT GETDATE(),
 	FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id) ON DELETE CASCADE,
-	FOREIGN KEY (cliente_id) REFERENCES clientes(produto_id) ON DELETE CASCADE
+	FOREIGN KEY (produto_id) REFERENCES produtos(produto_id) ON DELETE CASCADE
 );
 GO
 
